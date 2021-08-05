@@ -21,11 +21,36 @@ class _QuotelistState extends State<Quotelist> {
         author: 'Marcus Tullius Cicero',
         text: "A room without books is like a body without a soul."),
   ];
-  List<String> authors = [
-    "Oscar Wilde",
-    "Frank Zappa",
-    "Marcus Tullius Cicero"
-  ];
+  Widget quoteTemplate(quote) {
+    return Card(
+        margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+        child: Padding(
+          padding: EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                quote.text,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(
+                height: 6.0,
+              ),
+              Text(
+                quote.author,
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey[600],
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +61,7 @@ class _QuotelistState extends State<Quotelist> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((e) => Text("${e.text} - ${e.author}")).toList(),
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
       ),
     );
   }
